@@ -1,0 +1,437 @@
+diff --git a/GNUmakefile b/GNUmakefile
+index eebf2cc..9af7814 100644
+--- a/GNUmakefile
++++ b/GNUmakefile
+@@ -124,7 +124,6 @@ CPPFLAGS :=
+ 
+ 
+ CFLAGS  := -g \
+- -funroll-loops -fomit-frame-pointer -ffast-math \
+  -Isrc -Isrc/dialogs -Isrc/fileio -Isrc/fileio/iff \
+  -Isrc/jsui -Isrc/jsui/gui -Isrc/jsui/gfx \
+  -Isrc/paint \
+diff --git a/archs/Linux/variables.GNU b/archs/Linux/variables.GNU
+index 1e8e081..63a1454 100644
+--- a/archs/Linux/variables.GNU
++++ b/archs/Linux/variables.GNU
+@@ -5,5 +5,4 @@ LIBS := `sdl-config --libs`
+ ############################################################
+ MKDIR_CMD = test -d $(@D) || mkdir -p $(@D)
+ ############################################################
+-CFLAGS += -Wall -pedantic-errors -Wno-long-long    
+-
++CFLAGS += -Wno-long-long #-Wall -pedantic-errors -Wno-long-long    
+diff --git a/src/dialogs/brushes.c b/src/dialogs/brushes.c
+index 51c496a..8af57b3 100644
+--- a/src/dialogs/brushes.c
++++ b/src/dialogs/brushes.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+ ** toolbar.c
+ */
+diff --git a/src/dialogs/filereq.c b/src/dialogs/filereq.c
+index 3c94b9e..ac46214 100644
+--- a/src/dialogs/filereq.c
++++ b/src/dialogs/filereq.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+ ** file requestor
+ */
+diff --git a/src/dialogs/palette.c b/src/dialogs/palette.c
+index b053b2d..d6d7a4e 100644
+--- a/src/dialogs/palette.c
++++ b/src/dialogs/palette.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+ ** palette.c
+ */
+diff --git a/src/dialogs/toolbar.c b/src/dialogs/toolbar.c
+index d0b0483..f811676 100644
+--- a/src/dialogs/toolbar.c
++++ b/src/dialogs/toolbar.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+ ** toolbar.c
+ */
+diff --git a/src/fileio/fileio.c b/src/fileio/fileio.c
+index fd66912..d0c422b 100644
+--- a/src/fileio/fileio.c
++++ b/src/fileio/fileio.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * fileio
+  *
+diff --git a/src/fileio/iff/blockio.c b/src/fileio/iff/blockio.c
+index bc6dc98..158d5a3 100644
+--- a/src/fileio/iff/blockio.c
++++ b/src/fileio/iff/blockio.c
+@@ -30,8 +30,8 @@
+   #include "endian.h"
+   #include "blockio.h"
+ #else
+-  #include "iff/endian.h"
+-  #include "iff/blockio.h"
++  #include "endian.h"
++  #include "blockio.h"
+ #endif
+ 
+ ////////////////////////////////////////////////////////////////////////////////
+diff --git a/src/fileio/iff/blockio.h b/src/fileio/iff/blockio.h
+index 9223576..49b0e63 100644
+--- a/src/fileio/iff/blockio.h
++++ b/src/fileio/iff/blockio.h
+@@ -32,7 +32,7 @@
+ #if defined (__APPLE__) && defined (__MACH__)
+   #include "endian.h"
+ #else
+-  #include "iff/endian.h"
++  #include "endian.h"
+ #endif
+ 
+ // the header for a block of IFF data
+diff --git a/src/fileio/iff/iff_load.c b/src/fileio/iff/iff_load.c
+index 7fbf53c..d5c0bbe 100644
+--- a/src/fileio/iff/iff_load.c
++++ b/src/fileio/iff/iff_load.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * iff_load
+  *
+@@ -34,8 +35,8 @@
+   #include "blockio.h"
+   #include "iffheadr.h"
+ #else
+-  #include "iff/endian.h"
+-  #include "iff/blockio.h"
++  #include "endian.h"
++  #include "blockio.h"
+   #include "iff/iffheadr.h"
+ #endif
+ 
+diff --git a/src/fileio/iff/iff_save.c b/src/fileio/iff/iff_save.c
+index dedc25b..5e244f7 100644
+--- a/src/fileio/iff/iff_save.c
++++ b/src/fileio/iff/iff_save.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * iff_save
+  *
+@@ -41,8 +42,8 @@
+   #include "blockio.h"
+   #include "iffheadr.h"
+ #else
+-  #include "iff/endian.h"
+-  #include "iff/blockio.h"
++  #include "endian.h"
++  #include "blockio.h"
+   #include "iff/iffheadr.h"
+ #endif
+ 
+diff --git a/src/fileio/iff/iff_type.c b/src/fileio/iff/iff_type.c
+index bb39e89..83ddbb0 100644
+--- a/src/fileio/iff/iff_type.c
++++ b/src/fileio/iff/iff_type.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * iff_type
+  *
+@@ -42,8 +43,8 @@
+   #include "blockio.h"
+   #include "iffheadr.h"
+ #else
+-  #include "iff/endian.h"
+-  #include "iff/blockio.h"
++  #include "endian.h"
++  #include "blockio.h"
+   #include "iff/iffheadr.h"
+ #endif
+ 
+diff --git a/src/ini/ini.c b/src/ini/ini.c
+index 544b9d9..073d0a3 100644
+--- a/src/ini/ini.c
++++ b/src/ini/ini.c
+@@ -38,6 +38,7 @@
+  ******/
+ 
+ #include <stdio.h>
++#define _SYS_WAIT_H
+ #include <stdlib.h> /* malloc, free, atoi */
+ #include <string.h> /* memset, strlen, strdup */
+ #ifdef SunOS
+diff --git a/src/jsui/gfx/floodfil.c b/src/jsui/gfx/floodfil.c
+index 25b9df5..bf7bbb7 100644
+--- a/src/jsui/gfx/floodfil.c
++++ b/src/jsui/gfx/floodfil.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * floodfil.c
+  *
+diff --git a/src/jsui/gfx/page.c b/src/jsui/gfx/page.c
+index ec304ba..dbb8414 100644
+--- a/src/jsui/gfx/page.c
++++ b/src/jsui/gfx/page.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * page
+  * 
+diff --git a/src/jsui/gfx/palette.c b/src/jsui/gfx/palette.c
+index c12cfde..e5928c3 100644
+--- a/src/jsui/gfx/palette.c
++++ b/src/jsui/gfx/palette.c
+@@ -25,6 +25,7 @@
+  *
+  */
+ 
++#define _SYS_WAIT_H
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include "jsui.h"
+diff --git a/src/jsui/gfx/pen.c b/src/jsui/gfx/pen.c
+index 29d2d23..4c0c3bf 100644
+--- a/src/jsui/gfx/pen.c
++++ b/src/jsui/gfx/pen.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * pen
+  *
+diff --git a/src/jsui/gfx/timing.c b/src/jsui/gfx/timing.c
+index 2a13d2d..257b367 100644
+--- a/src/jsui/gfx/timing.c
++++ b/src/jsui/gfx/timing.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+ ** timing
+ **
+diff --git a/src/jsui/gui/active.c b/src/jsui/gui/active.c
+index 7a24799..2077059 100644
+--- a/src/jsui/gui/active.c
++++ b/src/jsui/gui/active.c
+@@ -28,7 +28,7 @@
+  * another linked list library.
+  *  how many times must i write this?
+  */
+-
++#define _SYS_WAIT_H
+ #include <stdlib.h>
+ #include "jsui.h"
+ 
+diff --git a/src/jsui/gui/jsuibase.c b/src/jsui/gui/jsuibase.c
+index 44e7a98..9c4ce79 100644
+--- a/src/jsui/gui/jsuibase.c
++++ b/src/jsui/gui/jsuibase.c
+@@ -61,7 +61,7 @@
+     - if the dialog grabs focus, it returns and falls out, otherwise continue
+ 
+  *************************************************************/
+-
++#define _SYS_WAIT_H
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+diff --git a/src/jsui/gui/msg.c b/src/jsui/gui/msg.c
+index 107958b..16781e7 100644
+--- a/src/jsui/gui/msg.c
++++ b/src/jsui/gui/msg.c
+@@ -28,7 +28,7 @@
+  * another linked list library.
+  *  how many times must i write this?
+  */
+-
++#define _SYS_WAIT_H
+ #include <stdlib.h>
+ #include "jsui.h"
+ #include "active.h"
+diff --git a/src/jsui/gui/uievents.c b/src/jsui/gui/uievents.c
+index 3f4f1fe..c0c3caf 100644
+--- a/src/jsui/gui/uievents.c
++++ b/src/jsui/gui/uievents.c
+@@ -23,7 +23,7 @@
+  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  *
+  */
+-
++#define _SYS_WAIT_H
+ #include "SDL.h"
+ #include "jsui.h"
+ #include "active.h"
+diff --git a/src/jsui/gui/widgets/editbox.c b/src/jsui/gui/widgets/editbox.c
+index c315ce6..ece4d92 100644
+--- a/src/jsui/gui/widgets/editbox.c
++++ b/src/jsui/gui/widgets/editbox.c
+@@ -23,7 +23,7 @@
+  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  *
+  */
+-
++#define _SYS_WAIT_H
+ #include <string.h>
+ #include <stdlib.h>
+ #if !defined (__APPLE__) && !defined (__MACH__)
+diff --git a/src/jsui/gui/widgets/menu.c b/src/jsui/gui/widgets/menu.c
+index 4d06466..7740af0 100644
+--- a/src/jsui/gui/widgets/menu.c
++++ b/src/jsui/gui/widgets/menu.c
+@@ -48,7 +48,7 @@ on mouse release
+     remove children
+ */
+ 
+-
++#define _SYS_WAIT_H
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+diff --git a/src/jsui/jsui.h b/src/jsui/jsui.h
+index 4c06468..46e6778 100644
+--- a/src/jsui/jsui.h
++++ b/src/jsui/jsui.h
+@@ -43,7 +43,7 @@
+  *
+  *  Some things were changed to make it less drain bramaged.
+  */
+-
++#define _SYS_WAIT_H
+ #include <SDL.h>
+ 
+ #ifndef __JSUI_H__
+diff --git a/src/log.c b/src/log.c
+index 4146804..3fae54e 100644
+--- a/src/log.c
++++ b/src/log.c
+@@ -24,7 +24,7 @@
+  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  *
+  */
+-
++#define _SYS_WAIT_H
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+diff --git a/src/main.c b/src/main.c
+index 8afa5c5..6ac97eb 100644
+--- a/src/main.c
++++ b/src/main.c
+@@ -27,7 +27,7 @@
+  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  *
+  */
+-
++#define _SYS_WAIT_H
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+@@ -109,13 +109,11 @@ request_resolution_screen(
+ 
+ /* this is to check to see if we're running under OSX libSDL. */
+ #if defined (__APPLE__) && defined (__MACH__)
+-int SDL_main(
++int SDL_main
+ #else
+-int main(
++int main
+ #endif
+- int argc,
+- char *argv[]
+-)
++   (int argc, char *argv[])
+ {
+  IPAGE *prim = NULL;
+  IPAGE *swap = NULL;
+diff --git a/src/paint/cursors.c b/src/paint/cursors.c
+index 1008f8d..aa0ebc3 100644
+--- a/src/paint/cursors.c
++++ b/src/paint/cursors.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+ ** cursors
+ **
+diff --git a/src/paint/events.c b/src/paint/events.c
+index 115b8f2..e875db9 100644
+--- a/src/paint/events.c
++++ b/src/paint/events.c
+@@ -1,4 +1,4 @@
+-
++#define _SYS_WAIT_H
+ /*
+ ** events.c
+ **
+diff --git a/src/paint/tool_cb.c b/src/paint/tool_cb.c
+index acfc0e5..f1f5f8b 100644
+--- a/src/paint/tool_cb.c
++++ b/src/paint/tool_cb.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * tool_cb
+  * 
+diff --git a/src/paint/tools.c b/src/paint/tools.c
+index 0025af6..6179593 100644
+--- a/src/paint/tools.c
++++ b/src/paint/tools.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * tools
+  * 
+@@ -25,7 +26,7 @@
+  *
+  */
+ 
+-//#include <stdio.h>
++#include <stdio.h>
+ 
+ #include "SDL.h"
+ #include "jsui.h"
+diff --git a/src/paint/tools/airbrush.c b/src/paint/tools/airbrush.c
+index 53be697..9540823 100644
+--- a/src/paint/tools/airbrush.c
++++ b/src/paint/tools/airbrush.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * airbrush
+  * 
+diff --git a/src/paint/tools/drawmode.c b/src/paint/tools/drawmode.c
+index 582b7e9..9c195ca 100644
+--- a/src/paint/tools/drawmode.c
++++ b/src/paint/tools/drawmode.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * drawmode
+  * 
+diff --git a/src/paint/tools/ui.c b/src/paint/tools/ui.c
+index e4299f4..bbcf4fc 100644
+--- a/src/paint/tools/ui.c
++++ b/src/paint/tools/ui.c
+@@ -1,3 +1,4 @@
++#define _SYS_WAIT_H
+ /*
+  * ui
+  * 
+diff --git a/src/prefs.c b/src/prefs.c
+index 0592698..8394927 100644
+--- a/src/prefs.c
++++ b/src/prefs.c
+@@ -24,7 +24,7 @@
+  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  *
+  */
+-
++#define _SYS_WAIT_H
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+
