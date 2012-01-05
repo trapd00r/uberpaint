@@ -1,0 +1,192 @@
+/*
+** strings.h
+**
+**  various textual strings, used for menus and such.
+**  perhaps this should be switched to a locale library in the future
+**
+**  I added this since a lot of people seem to be using this in other
+**  language countries, so it makes sense to make these text strings
+**  switchable.
+**
+**  It also lets us be more consistent, so that we don't have the Okay/OK issue
+**
+**/
+
+/*
+ * 4p - Pixel Pushing Paint Program
+ * Copyright (C) 2006 Scott "Jerry" Lawrence
+ *                    jsl.4p@absynth.com
+ *
+ *  This is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License as published by the Free Software Foundation; either
+ *  version 2 of the License, or (at your option) any later version.
+ *
+ *  This software is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ *  Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License along with this library; if not, write to the Free
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ */
+ 
+#define STR_LK( A )		A
+
+#define STRINGS_OK		"Ok"
+#define STRINGS_CANCEL		"Cancel"
+#define STRINGS_UNDO		"Undo"
+#define STRINGS_REDO		"Redo"
+#define STRINGS_REVERT		"Revert"
+
+#define STRINGS_DIRECTORY	"Directory"
+
+#define STRINGS_TEXT__		"Text..."
+
+#define STRINGS_PALETTEED	"Color Palette"
+#define STRINGS_SPREAD		"Spread"
+#define STRINGS_EX		"Ex"
+#define STRINGS_COPY		"Copy"
+#define STRINGS_RANGE		"Range"
+#define STRINGS_SPEED		"Speed"
+
+/* menu stuff */
+#define STRINGS_4P		"UberPaint"
+#define STRINGS_MENU		"Menu"
+#define STRINGS_FILE		"File"
+#define STRINGS_BRUSH		"Brush"
+#define STRINGS_MODE		"Mode"
+#define STRINGS_ANIM		"Anim"
+#define STRINGS_EFFECTS		"Effects"
+#define STRINGS_FONT		"Font"
+#define STRINGS_PREFS		"Prefs"
+
+#define STRINGS_ABOUT		"About 4p"
+#define STRINGS_PREFERENCES	"Preferences"
+#define STRINGS_QUIT		"Quit"
+
+#define STRINGS_HORIZ		"&Horiz"
+#define STRINGS_VERT		"&Vert"
+
+#define STRINGS_COORDS		"&Coords"
+#define STRINGS_MULTICYCLE	"&Multi-Cycle"
+#define STRINGS_EXCLBRUSH	"&Excl Brush"
+#define STRINGS_AUTOTRANS	"&Auto Transp"
+#define STRINGS_AUTOGRID	"&Auto Grid"
+
+#define STRINGS_STYLE		"&Style"
+#define STRINGS_SCANFONTS	"&Scan Fonts"
+
+#define STRINGS_BOLD		"&Bold"
+#define STRINGS_ITALIC		"&Italic"
+#define STRINGS_UNDERLINE	"&Underline"
+
+#define STRINGS_STENCIL		"&Stencil"
+#define STRINGS_BACKGROUND	"&Background"
+#define STRINGS_FIX		"&Fix"
+#define STRINGS_OFF		"&Off"
+
+#define STRINGS_LOAD		"&Load"
+#define STRINGS_SAVE		"&Save"
+
+#define STRINGS_MAKE		"&Make"
+#define STRINGS_REMAKE		"&Remake"
+#define STRINGS_LOCKFG		"&Lock FG"
+#define STRINGS_REVERSE		"&Reverse"
+#define STRINGS_ONOFF		"&On/Off [~]"
+#define STRINGS_FREE		"&Free"
+
+#define STRINGS_MOVE		"&Move"
+#define STRINGS_FRAMES		"&Frames"
+#define STRINGS_CONTROL		"&Control"
+#define STRINGS_ANIMBRUSH	"&Anim Brush"
+#define STRINGS_METHOD		"&Method"
+
+#define STRINGS_M_MATTE		"&Matte     [F1]"
+#define STRINGS_M_COLOR		"&Color     [F2]"
+#define STRINGS_M_REPLACE	"&Replace   [F3]"
+#define STRINGS_M_SMEAR		"&Smear     [F4]"
+#define STRINGS_M_SHADE		"&Shade     [F5]"
+#define STRINGS_M_BLEND		"&Blend     [F6]"
+#define STRINGS_M_CYCLE		"&Cycle     [F7]"
+#define STRINGS_M_SMOOTH	"&Smooth    [F8]"
+#define STRINGS_M_TINT		"&Tint"
+#define STRINGS_M_HALFBRITE	"&HalfBrite"
+
+#define STRINGS_MATTE		"Matte"
+#define STRINGS_COLOR		"Color"
+#define STRINGS_REPLACE		"Replace"
+#define STRINGS_SMEAR		"Smear"
+#define STRINGS_SHADE		"Shade"
+#define STRINGS_BLEND		"Blend"
+#define STRINGS_CYCLE		"Cycle"
+#define STRINGS_SMOOTH		"Smooth"
+#define STRINGS_TINT		"Tint"
+#define STRINGS_HALFBRITE	"HalfBrite"
+
+#define STRINGS_RESTORE		"&Restore"
+#define STRINGS_SIZE		"&Size"
+#define STRINGS_FLIP		"&Flip"
+#define STRINGS_OUTLINE		"&Outline"
+#define STRINGS_ROTATE		"&Rotate"
+#define STRINGS_CHANGECOLOR	"&Change Color"
+#define STRINGS_BEND		"&Bend"
+#define STRINGS_HANDLE		"&Handle"
+
+#define STRINGS_CENTER		"&Center"
+#define STRINGS_CORNER		"&Corner"
+#define STRINGS_PLACE		"&Place"
+
+#define STRINGS_OUTLINE		"&Outline"
+#define STRINGS_TRIM		"&Trim"
+
+#define STRINGS_90DEG		"&90 Degrees"
+#define STRINGS_ANYANGLE	"&Any Angle"
+#define STRINGS_SHEAR		"&Shear"
+
+#define STRINGS_BGTOFG		"&BG  -> FG"
+#define STRINGS_BGBTOFG		"&BG <-> FG"
+#define STRINGS_REMAP		"&Remap"
+#define STRINGS_TRANSPARENCY	"&Transparency"
+
+#define STRINGS_STRETCH		"&Stretch"
+#define STRINGS_HALVE		"&Halve"
+#define STRINGS_DOUBLE		"&Double"
+#define STRINGS_DOUBLEH		"&Double Horiz"
+#define STRINGS_DOUBLEV		"&Double Vert"
+
+#define STRINGS_FLIP		"&Flip"
+#define STRINGS_CHANGECOLOR	"&Change Color"
+#define STRINGS_SPARE		"&Spare"
+#define STRINGS_PAGESIZE	"&Page Size"
+#define STRINGS_SHOWPAGE	"&Show Page"
+#define STRINGS_SCREENFORMAT	"&Screen Format"
+
+#define STRINGS_SWAP		"Swap [J]"
+#define STRINGS_COPYTOSPARE	"Copy To Spare"
+#define STRINGS_MERGEINFRONT	"Merge In Front"
+#define STRINGS_MERGEINBACK	"Merge In Back"
+#define STRINGS_DELETETHIS	"Delete This"
+
+#define STRINGS_PALETTE		"&Palette"
+#define STRINGS_USEBRUSHPALETTE	"Use Brush Palette"
+#define STRINGS_RESTOREPALETTE	"Restore Palette"
+#define STRINGS_DEFAULTPALETTE	"Default Palette"
+#define STRINGS_CYCLE		"Cycle"
+
+/* informational... */
+
+#define STRINGS_BETA0		"This is beta software."
+#define STRINGS_BETA1		"It will probably crash on you."
+
+#define STRINGS_LOADFAIL	"Unable to load file."
+#define STRINGS_SAVEFAIL	"Unable to save file."
+
+/* log messages */
+#define STRINGS_UNKNOWN		"??"
+#define STRINGS_DEBUG 		"debug"
+#define STRINGS_WARNING		"Warning"
+#define STRINGS_ERROR 		"ERROR"
+#define STRINGS_INFO 		"info"

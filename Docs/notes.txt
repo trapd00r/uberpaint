@@ -1,0 +1,308 @@
+----------------------------------------
+Thu Oct 12 21:36:36 EDT 2006
+
+Of course, the big question now is; how do i work that into the existing
+framework?
+
+
+----------------------------------------
+Wed Oct 11 16:18:58 EDT 2006
+
+Okay... here's the finalized version of the menu system:
+
+Top bar is a "Menu Bar Frame" containing:
+	Menu Frame
+	Menu Submenu		- mouseover inverts, opens on click
+				- popups open underneath
+	Menu Icon Button	- think "apple logo button"
+	Menu Vert. Separator	- a vertical line to separate two items
+
+Menu popups are:
+	Menu Popup Frame	- dropdown menu list - 3d recessed box
+	Menu Item		- mouseover inverts
+	Menu Submenu		- mouseover inverts, opens on click
+				- popups open to the right
+				- support for checkmark
+	Menu Horiz. Separator 	- a horizontal bar. non-selectable
+
+If click is outside of the currently active frame, 
+	close that frame, making the old top into the new active frame
+	pass the event to the new active frame
+
+If click is inside of the currently active frame,
+	pass the event on to the correct widget
+
+that's it.  recursion is our friend.
+
+
+----------------------------------------
+Wed Oct  4 15:14:01 EDT 2006
+
+New menu concepts:
+    - The menubar is a menuframe with menubuttons in it
+    - it, and its children, hold focus until released, when they all disappear
+    - Widgets needed:
+	Menu Bar Frame  (standard frame)
+	Menu Button	(mouse-over inverse)
+	Menu Vsep	(vertical separator)
+	Menu Frame	(popup menu frame (vertical list of buttons))
+	Menu Hsep	(horizontal separator)
+
+    - if mouse button is raised, remove all menu items.
+    - if mouse button is pressed or dragged, do:
+    - act of opening a "menu", adds an item to the top of the menu stack.
+    - two behaviors: 
+	- mouseover on "submenu popup button" makes its submenu appear
+	- Frame runs in MODE A - DISPLAY
+	- if user moves into that frame, it gets focus, MODE B - INUSE
+	DISPLAY:
+	    if mouse moves off the button that launched it, remove it from stack
+	    if mouse moves onto generated frame, switch to MODE B - INUSE
+	INUSE:
+	    if mouse moves outside of the frame:
+		- and into the button that launched it: switch to DISPLAY mode
+		- and elsewhere: pop it off of the stack
+
+    there's gotta be a better way to categorize this
+
+
+Interesting that I needed to step away from the original design so
+that I could try to mangle the existing stuff into menus, to help
+me see exactly which path I should go down.
+
+
+----------------------------------------
+Mon Oct  2 11:48:50 EDT 2006 (the day UberPaint truly strayed from DPaint)
+
+The new menubar:
+    Always visible button bar as the menu header
+    - buttons are visible:
+
+[ UberPaint v0.12 ] [Image] [Brush] [Effects] [Font]   [100%]  [A 000]  [COLOR]
+	(it's a simple frame with no vertical offset/header dragbar)
+
+UberPaint menus:
+
+    Application:
+	Help
+	About
+	-
+	Screen Format
+	-
+	Preferences (eventually a prefs pane, but for now, checkitems:)
+	    coords/multicycle/excelbrush/autotrans/autogrid
+	-
+	Quit
+
+    Image:
+	new -> select res, ncolors
+	load -> file requestor
+	revert (restore from last backup?) -> confirm?
+	-
+	save -> resave to filename, or save as
+	save as -> file requestor
+	-
+	import -> file requestor with filetypes
+	export -> file requestor with filetypes
+
+    Brush:
+	load -> file requestor
+	save -> resave to filename, or save as
+	save as -> file requestor
+	revert (restore from last backup?) -> confirm
+	- 
+	size 
+	    stretch/halve/double/double h/double v
+	flip
+	    horiz/vert
+	outline
+	    outline/trim
+	rotate
+	    90/any/shear
+	change color
+	    bg to fg/swap bg fg/remap/transparency
+	bend
+	    horiz/vert
+	handle
+	    center/corner/place
+	    
+
+    Effects:
+	Image
+	    flip horiz
+	    flip vert/resize
+	Stencil
+	    on-off/free/load/save/make/remake/lockfg/reverse/
+	Background
+	    fix/off
+
+    Font
+	Style
+	    bold/italic/underline
+	<font list>
+
+    100% - zoom level
+	recenter
+	actual size
+	fill screen
+	magnify
+
+    A 000 - image stack/anim (A=which stack, 000 = stack frame number)
+	Load Stack
+	Save Stack
+	-
+	next/previous (buttons in titlebar?)
+	add after this
+	delete this
+	set number of frames
+	-
+	swap A <=> B
+	-
+	Move/Control/Animbrush/method (?)
+
+    COLOR - image mode
+	matte/color/replace/smear/shade/blend/cycle/smooth/(tint/halfbrite)
+	
+	
+    
+
+
+----------------------------------------
+Mon Oct  2 01:55:32 EDT 2006
+
+Perhaps replace the custom menu code with the following: 
+    - Menu Header is a window containing a special widget:
+	- when not mouseover, display one big graphic with text:
+	    left, center, right  text
+	- when mouseover, hide that graphic, and instead
+	  display a horizontal list of buttons (frameless window)
+	    - no outer box on the buttons (like brushbox)
+	    - inverse highlighting on mouseover (new for buttons)
+	- when one of those buttons are pressed, simply display
+	  another headerless list of buttons that are the same way
+
+----------------------------------------
+Wed Sep 27 16:29:04 EDT 2006
+
+Stuff to fly over from the 0.11 noweb effort:
+	x fileio common file api
+
+
+future features:
+	- iff and pcx filetypes/
+	- use image stack as undo stack
+	- export/save image stack as frames
+	- pnm exporting
+	- jnm load/save (indexed pnm)
+
+
+
+
+----------------------------------------
+Tue Sep 26 15:32:26 EDT 2006
+
+Global events:
+	- fill X with current undermouse color
+	- set fg color to X
+	- set bg color to X
+	- get X and Y from mouse position (as canvas coordinates)
+
+	- get pantbrush style to X
+	- set paintbrush to X round
+	- set paintbrush to X square
+	- set paintbrush to X dotty
+	- set paintbrush to user
+	- swap user paintbrush 
+	- capture new user paintbrush
+
+	- swap video frame
+	- get video frame number to X
+	- set video frame to X
+
+	- paint mode: Matte
+	- paint mode: Color
+	- paint mode: Replace
+
+	- draw mode: dotty draw
+	- draw mode: liney draw
+	- draw mode: vector line
+	- draw mode: fill
+	- draw mode: airbrush
+	- draw mode: rect
+	- draw mode: rect filled
+	- draw mode: circle
+	- draw mode: circle filled
+	- draw mode: text
+
+	- undo
+	- clear
+
+	- display palette chooser
+
+
+--------------------------------------------------------------------------------
+I need an 'send global event' mechanism.
+so that i can send a "change to color X" message, and all of the proper tools will receive it.
+- the hack in the palette selector would be removed.
+
+
+
+add a 'get fg color'  and 'get bg color'  for drawing in color mode, 
+so that for cycle we can cycle colors easily.
+
+multicycle - cycle based on the color in the view
+colorcycle(rangelist, iview_to_cycle)
+
+view - takes on the palette of the last loaded image.
+
+palette manipulation tools will affect the view's palette
+
+view display window size
+scale x1 or x2 from view to the screen display
+
+for now: 
+    view is fixed at 2x zoom of screen graphics
+    screen graphics overlays:
+	menus
+	toolbar
+
+    mouse moves go through the view handler, which determines which 'portal'
+    to send the mouse events to.
+
+idea:
+    Add colors to the palette as needed
+
+Zoom/resolution selector should behave differently.
+
+Enhancements for the next JSUI version:
+
+Dialog structure will include:
+    widget handler pointer
+    x, y, w, h,
+    key
+    dialog maintenance flags
+    widget flags
+    callback pointer (void *)
+    3 int values
+    3 void * values
+
+Two ideas of focus:
+
+current dialog with focus
+current widget with focus
+
+when a widget releases focus, check for new focus position
+when a mouse moves, check for new focus position
+offer focus to new focus items.  if they accept focus, they locked the focus
+don't offer focus until they release it.
+
+
+dialog runtime handler has a pointer to a video buffer.  
+only dirty regions of the buffer get blit.
+the visualizer will check for dirty regions.  if there are none, it will
+not update at all.
+
+multiple update regions (like 3 or so is all thats really needed)
+create a new type, 'rect'  typedef struct{ int, int, int, int } rect;
+
+

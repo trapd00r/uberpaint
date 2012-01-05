@@ -1,0 +1,31 @@
+0Files		This file
+BUGS		various bugs noted in the system
+Docs		various docs and notes used for writing the code
+GNUmakefile	the Makefile
+Images		Various Images from Deluxe Paint
+LICENSE		The license for the source code
+NOTES		various notes about issues, thoughts for features
+Palettes	various useful paletts in .PPM format
+README		Information about the program
+Release		Where the executable/distribution gets put
+TODO		my to-do list
+archs		architecture-specific items
+src		all of the source code:
+
+src/jsui	My GUI system/library
+
+src/jsui/gui	widgets, event handling for the gui system
+
+src/jsui/gfx	various graphics primitives
+
+src/paint	paint-program functionality and effects
+		brushes, paint tools, etc.
+
+src/fileio	All of the file operations - load/save, exporting, etc.
+		should contain subdirectories, each of which handles a filetype
+
+src/dialogs	Paint-program related dialog requestor windows
+		ok/cancel acceptor, brush window, file requestor,
+		font requestor, menus, palette editor, resolution selector,
+		toolbar window
+

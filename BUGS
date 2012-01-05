@@ -1,0 +1,57 @@
+-10- 2008-06-26 - Fixed 2008-Jun-26
+    text output should be filtered through a logging mechanism
+    	- same mechanism could be used for the status line in the manager too
+
+(9) 2008-06-24
+    some keyboard shortcuts for paint are nonfunctional
+	- shift+[key] - perhaps they're being filtered?
+
+-8- 2008-06-24 - Fixed 2008-Jun-25
+    toolbar buttons don't react to broadcast messages
+	- press 'd', the draw button does not get selected.
+	- press '+'/'-', and the brush size DOES change
+	- messages might make it there, but they're not responding/pressing
+	- There is no association between an imagebutton and a message
+	- need to make a "fake button presser"
+	- need to add: visually look like a button press, without pressing
+	- i wish i made buttons with unique ids now.  that would simplify this.
+
+(7)
+    paintcan cursor doesn't work
+	- i don't know why
+	- is this only an OS X related issue?
+	- perhaps it's a limitation of libSDL
+	- perhaps I'm doing something wrong? Other cursors work
+	- this seems wierd.
+
+(6)
+    lack of menus
+ 
+(5)
+    line draw optimizations are counteracting order for vector line drawing
+	- re-implement all of the graphics primitives ?
+	- perhaps just re-implement for placing brushes
+
+(4)
+    a brush color picked up in one screen may be a different color in the other
+    screen, but will draw correctly.
+	- a single 'screen palette' needs to be imposed.
+	- is this acceptable? 
+	- implement brush color remapping?
+
+(3)
+    Some resolutions don't draw properly on OS X
+	- is this an OS X only issue?
+	- mainly, fullscreen modes do not function properly
+
+(2)
+    8 bit display does not function
+	- drop 8 bit support completely?  This seems acceptable.
+
+(1)
+    - the paint callback is getting called with 0,0 when it no longer has focus.
+	- it should get called with -1, -1, to tell it that the mouse
+	  is external to the screen.
+	- this is causing the full-screen redraws when a window is
+	  dragged i think.
+

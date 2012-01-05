@@ -1,0 +1,226 @@
+----------------------------------------
+Tue Jun 24 11:51:51 EDT 2008
+
+Since that didn't really work, I'm going to attack it from another
+method.
+
+Rather than trying to faithfully reproduce DPaint 100% accurately,
+I will instead reproduce the "essence" of DPaint.  I will take some
+liberties with the interface a bit to make it more easily usable.
+
+The problems I was having with the menus were:
+
+1. Menus in a window on a desktop are stupid.  I know Windows does
+   this all the time, but I can't stand it.  The whole reason for
+   menus at the top of a screen is that it's easy to hit them...
+   slide the mouse to the top of the screen, it's stopped by the
+   border, then easy to hit menus.  If the menus are at the top of
+   a window, in an arbitrary location within the desktop, it now
+   becomes much more difficult to hit the menus accurately.
+
+2. Menus, using the traditional menu mechanism is not easy to get
+   working and get right.  The existing code is probably 70% there,
+   but every time I look at it, I get frustrated and discouraged.
+
+By switching the menus to a popup menu, centered under the mouse,
+using the Lotus-1-2-3-style navigation mechanism I used in TuracoCL-GUI,
+I think it will be a better user experience, and will generate less
+user frustration.  This will also allow for keyboard driven menus
+easily, and by default.
+
+I don't think it would be too difficult to convert the existing
+menu structures over.  A "menu" becomes a list of buttons in a
+dialog window... very straightforward.
+
+The only difference is that it now will require a keyboard shortcut,
+and some other way to display the menubar status info.  Perhaps the
+two are combined into an application window.
+
+Normally, it just shows:
+	Uberpaint 4P vX.XX
+	Color
+
+Clicking on the "UberPaint" text brings up the menu popup.
+Clicking on the "Color" text brings up the color mode popup.
+
+
+Similarly, ZOOM should be implemented more like MacPaint's "Fatbits" rather 
+than DPaint's zoom.  The main screen should remain as-is, but a zoom menu 
+should appear, resizable(eventually), with [+][-] buttons in the dragbar, 
+rather than remaining like a 100% reproduction of DPaint.
+
+    [X] Zoom: 35%  [+][-]
+etc.
+
+
+----------------------------------------
+Tue Sep 26 15:41:29 EDT 2006
+
+After thinking more, the bare minimum that needs to get done next is:
+
+- gui widgets:
+	- menu dropdowns
+	- file selector
+	
+- separate screen display from image canvas
+	- this makes image stacks easy to make
+	- lock at 1:1, centered for now
+	- empty area gets checkerboarded
+
+- image file formats:
+	(expand on the fileio functionality - fly it in from .NW)
+	- IFF load/save (fly it in from NW)
+		- pull endian.c out to fileio.c
+	- PCX load/save
+	- sdl_image export
+
+=== Other neat things that might be nice:
+
+- figure out a build and testing environment for AROS
+
+- command line parsing
+	4p [options] filenames
+	--language en		language - "en"/"gb" supported
+	--displaymode 640x480	screen resolution
+	--imagesize 320x240	image draw size (used for all frames)
+	--nosplash		no startup splash screen, runs with defaults
+	--windowmode		open in a window
+	--fullscreen		open in a full screen
+	--stretchtofill		stretch(zoom) to fill image in display
+
+	multiple filenames on the command line load them in, in that order
+
+- prefs file:
+	[4p]
+	language = en
+	displaymode = 640x480
+	etc.
+
+- About box should show useful info:
+	Version X
+	Release Y
+	TPOTC
+	Created by Scott Lawrence
+	Based on Deluxe Paint by Dan Silva
+	(c) 2000-2007 UmlautLlama.com
+	Frames:
+	Palettes:
+	Brushes:
+	[ ok ]
+
+- gui widgets:
+	- list selector
+
+- new startup screen: (320x240 for maximum compatibility)
+	Choose Display Mode		Display Mode Information
+	[ 640x400 4:3		] 	 ...
+	[ 640x480 4:3 square	]
+	[ 780x480 16:9		]
+
+	Choose Image Size		Version Information
+	[ 320x200		]		Version X
+	[ 320x240		]		Release Y
+
+	[ ] use this as the defaults
+						[ Ok ]  [ Cancel ]
+
+	- command line options change the default startup values
+	- image specified on the command line changes default startup values
+	- command line option disables the startup screen
+	- this saves out a dpaint prefs file (.ini) 
+
+
+
+----------------------------------------
+Tue Sep 26 15:27:47 EDT 2006
+
+After re-thinking, i want to keep with this older source heirarchy,
+but a few changes need to be made:
+
+- gui widgets:
+	- menu dropdowns
+	- file selector
+- command line parsing
+- tools should listen for trigger events (button, keystroke)
+- screen selector only changes screen res. image data is independant of this
+- zoom view is default, fatbits zoom is extra zoom in
+	- actual size (seems much bigger to me)
+	- fill screen, integer zoom (1x, 2x, 3x, 4x)
+	- smaller zooms open a dpaint style mag window (1/2x, 1/4x, etc)
+- image load/save api (compile-in plugins, not runtime)
+- need to be able to have 0 images loaded in
+- image view stack
+	- j swaps between top [0] and next [1]
+	- number keys scroll a la dpaint 3 anim handling
+
+--------------------------------------------------------------------------------
+
+OLD Next items to do:
+
+- Menu Support
+- Look into XUL/LlamaGui like support - Lex/Yacc, XML?
+- Zoom view (lets images display on all res screens) (res. independant)
+	- Full view in 100x100
+	- not split screen like DPaint
+- IFF Save
+- PCX Load/Save
+- PCX Fonts
+- Amiga Font Load
+
+--------------------------------------------------------------------------------
+What follows is the ancient todo.
+It is from the 2001 effort
+
+For 1.0 release, the following should be done:
+
+Startup:
+    - create two screens, main and swap
+
+UI Widgets
+    _ Menus
+    _ text selection scroll box
+    _ Graphic Buttons
+    _ Palette Box
+
+UI Dialogs
+    _ Palette Requestor
+    _ File requestor dialog box
+
+Mechanism
+    _ zoom window needs to actually zoom
+    _ re-implement rubberband blit for zoom
+    _ re-implement dirty rectangles between zoom, and JSUI (none now)
+    _ IFF file save
+    _ implement a mask buffer to which the tools get drawn (will
+	    the rubberbanding buffer work for this?)  so that filled
+	    tools can just make their normal unfilled versions,
+	    fill to the new buffer, then blit to the active page.
+	    (redo becomes trivial)
+    _ split screen for zoom window a la depuxe laint
+    _ Amiga Font loader (font requestor, etc.)
+    _ Color cycling
+
+Tool Improvements 
+    _ Integrate pat's flood fill algorithm (into jsui?)
+    _ proper filled circle
+    _ on-screen text editing for text input.
+
+New Tools
+    _ Magnify Tool
+    _ grid
+    _ spare merging
+    _ palette remapping
+    _ brush rotate
+    _ brush skew
+    _ brush bend
+    _ brush handle placement
+    _ ellipse
+    _ polyline
+    _ curve
+    _ draw modes: 
+	_ smear		_ shade
+	_ blend		_ cycle
+	_ smooth
+    _ stencil
+    _ fix background
+
