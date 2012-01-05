@@ -1,3 +1,4 @@
+#define _SYS_WAIT_H
 /*
 ** cursors
 **

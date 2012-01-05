@@ -61,7 +61,7 @@
     - if the dialog grabs focus, it returns and falls out, otherwise continue
 
  *************************************************************/
-
+#define _SYS_WAIT_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

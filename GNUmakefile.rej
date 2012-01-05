@@ -1,0 +1,10 @@
+--- GNUmakefile
++++ GNUmakefile
+@@ -124,7 +124,6 @@
+ 
+ 
+ CFLAGS  := -g \
+- -funroll-loops -fomit-frame-pointer -ffast-math \
+  -Isrc -Isrc/dialogs -Isrc/fileio -Isrc/fileio/iff \
+  -Isrc/jsui -Isrc/jsui/gui -Isrc/jsui/gfx \
+  -Isrc/paint \

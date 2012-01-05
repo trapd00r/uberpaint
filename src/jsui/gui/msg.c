@@ -28,7 +28,7 @@
  * another linked list library.
  *  how many times must i write this?
  */
-
+#define _SYS_WAIT_H
 #include <stdlib.h>
 #include "jsui.h"
 #include "active.h"

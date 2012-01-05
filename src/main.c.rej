@@ -1,0 +1,19 @@
+--- src/main.c
++++ src/main.c
+@@ -109,13 +109,11 @@
+ 
+ /* this is to check to see if we're running under OSX libSDL. */
+ #if defined (__APPLE__) && defined (__MACH__)
+-int SDL_main(
++int SDL_main
+ #else
+-int main(
++int main
+ #endif
+- int argc,
+- char *argv[]
+-)
++   (int argc, char *argv[])
+ {
+  IPAGE *prim = NULL;
+  IPAGE *swap = NULL;

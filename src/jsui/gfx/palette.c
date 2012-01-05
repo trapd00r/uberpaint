@@ -25,6 +25,7 @@
  *
  */
 
+#define _SYS_WAIT_H
 #include <stdio.h>
 #include <stdlib.h>
 #include "jsui.h"

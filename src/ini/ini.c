@@ -38,6 +38,7 @@
  ******/
 
 #include <stdio.h>
+#define _SYS_WAIT_H
 #include <stdlib.h> /* malloc, free, atoi */
 #include <string.h> /* memset, strlen, strdup */
 #ifdef SunOS

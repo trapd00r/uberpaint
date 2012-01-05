@@ -1,3 +1,4 @@
+#define _SYS_WAIT_H
 /*
  * tools
  * 
@@ -25,7 +26,7 @@
  *
  */
 
-//#include <stdio.h>
+#include <stdio.h>
 
 #include "SDL.h"
 #include "jsui.h"

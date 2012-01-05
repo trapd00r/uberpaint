@@ -32,7 +32,7 @@
 #if defined (__APPLE__) && defined (__MACH__)
   #include "endian.h"
 #else
-  #include "iff/endian.h"
+  #include "endian.h"
 #endif
 
 // the header for a block of IFF data

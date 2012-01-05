@@ -43,7 +43,7 @@
  *
  *  Some things were changed to make it less drain bramaged.
  */
-
+#define _SYS_WAIT_H
 #include <SDL.h>
 
 #ifndef __JSUI_H__

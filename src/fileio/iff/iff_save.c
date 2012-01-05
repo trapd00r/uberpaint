@@ -1,3 +1,4 @@
+#define _SYS_WAIT_H
 /*
  * iff_save
  *
@@ -41,8 +42,8 @@
   #include "blockio.h"
   #include "iffheadr.h"
 #else
-  #include "iff/endian.h"
-  #include "iff/blockio.h"
+  #include "endian.h"
+  #include "blockio.h"
   #include "iff/iffheadr.h"
 #endif
 

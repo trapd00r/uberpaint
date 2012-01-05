@@ -1,4 +1,4 @@
-
+#define _SYS_WAIT_H
 /*
 ** events.c
 **

@@ -23,7 +23,7 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  */
-
+#define _SYS_WAIT_H
 #include <string.h>
 #include <stdlib.h>
 #if !defined (__APPLE__) && !defined (__MACH__)

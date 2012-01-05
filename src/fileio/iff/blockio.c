@@ -30,8 +30,8 @@
   #include "endian.h"
   #include "blockio.h"
 #else
-  #include "iff/endian.h"
-  #include "iff/blockio.h"
+  #include "endian.h"
+  #include "blockio.h"
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////

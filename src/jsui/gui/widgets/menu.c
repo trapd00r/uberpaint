@@ -48,7 +48,7 @@ on mouse release
     remove children
 */
 
-
+#define _SYS_WAIT_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
